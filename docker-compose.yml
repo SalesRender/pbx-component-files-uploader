@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  pbxlv2recordsuploader:
+    image: pbxlv2recordsuploader
+    build:
+      context: .
+      dockerfile: Dockerfile
