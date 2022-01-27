@@ -3,6 +3,8 @@
 Simple selectel upload
 
 ```python
+    from pbx_component_files_uploader.uploader import Uploader
+
     api = Uploader(Uploader.SERVICE_SELECTEL, {
         'username': 'user',
         'password': 'pass',
