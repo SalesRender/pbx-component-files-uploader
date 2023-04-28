@@ -34,6 +34,7 @@ class Selectel(BaseUploader):
         if not dstFileName:
             raise ValueError('Empty [dstFileName] field')
 
+        errorDesc = ''
         for i in range(self.DEFAULT_RETRIES):
             try:
                 storageData = self.auth.get_storage_data()
@@ -50,7 +51,7 @@ class Selectel(BaseUploader):
                 if response.status_code == 201:
                     return response.url
             except Exception as e:
-                log.debug(
-                    f'Attempt [{i + 1}]. Failed to upload. Cause [{e.__cause__}]')
+                log.debug(f'Attempt [{i + 1}]. Failed to upload. Cause [{e.__cause__}]')
+                errorDesc = str(e)
 
-        raise UploadError(400, f'Failed upload file [{srcFilePath}]')
+        raise UploadError(400, f'Failed upload file [{srcFilePath}]. Cause [{errorDesc}]')

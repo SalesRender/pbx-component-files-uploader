@@ -44,7 +44,7 @@ class Token:
         return self
 
     def is_expired(self):
-        return self.expiresAt - int(time.time()) < self.THRESHOLD
+        return (self.expiresAt - int(time.time())) < self.THRESHOLD
 
     def get_token_cache_file(self) -> Path:
         return Path(self.tokenCacheDir + '/' + Token.AUTH_TOKEN_STORAGE_FILE_NAME)
