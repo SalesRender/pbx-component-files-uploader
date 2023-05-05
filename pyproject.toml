@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pbx-component-files-uploader"
-version = "0.0.2"
+version = "0.0.4"
 description = "Files uploader to custom storages"
 authors = [
     "Ivan Kalashnikov <ivan@leadvertex.ru>"

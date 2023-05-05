@@ -47,11 +47,14 @@ class Selectel(BaseUploader):
 
                 response = requests.put(
                     url=url, data=srcFile.open(mode='rb'), headers=headers)
+                
+                if response.status_code == 401:
+                    self.auth.authenticate()
 
                 if response.status_code == 201:
                     return response.url
             except Exception as e:
-                log.debug(f'Attempt [{i + 1}]. Failed to upload. Cause [{e.__cause__}]')
                 errorDesc = str(e)
+                log.debug(f'Attempt [{i + 1}]. Failed to upload. Cause [{errorDesc}]')
 
         raise UploadError(400, f'Failed upload file [{srcFilePath}]. Cause [{errorDesc}]')
